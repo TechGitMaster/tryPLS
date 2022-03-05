@@ -16,7 +16,7 @@ export class Compo1Component implements OnInit {
   constructor(public http: HttpClient){}
 
   ngOnInit(): void {
-    this.subs = this.http.get('/api/trys').subscribe((data) => {
+    this.subs = this.http.get('/trys').subscribe((data) => {
       console.log(data);
       setTimeout(() => {
         this.title = new Observable((obs) => {
