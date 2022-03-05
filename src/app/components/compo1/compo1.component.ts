@@ -17,13 +17,18 @@ export class Compo1Component implements OnInit {
   constructor(public http: HttpClient, public activated: ActivatedRoute){}
 
   ngOnInit(): void {
-    this.subs = this.http.get(`/${ this.activated.snapshot.paramMap.get('id') }`).subscribe((data) => {
-      setTimeout(() => {
-        this.title = new Observable((obs) => {
-          obs.next(data);
-          this.subs.unsubscribe();
-        });
-      }, 2000);
+    this.subs = this.http.get('/trys').subscribe((data) => {
+      console.log(this.activated.snapshot.paramMap.get('id'));
+      this.subs.unsubscribe();
+      this.subs = this.activated.data.subscribe((datas) => {
+        this.subs.unsubscribe();
+        console.log(datas);
+        setTimeout(() => {
+          this.title = new Observable((obs) => {
+            obs.next(data);
+          });
+        }, 2000);
+      });
     });
   }
 
