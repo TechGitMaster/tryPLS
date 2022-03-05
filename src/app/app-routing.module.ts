@@ -4,7 +4,7 @@ import { Compo1Component } from './components/compo1/compo1.component';
 
 
 const routes: Routes = [
-  { path: 'compo1', component: Compo1Component }
+  { path: 'compo1/:id', component: Compo1Component }
 ];
 
 @NgModule({

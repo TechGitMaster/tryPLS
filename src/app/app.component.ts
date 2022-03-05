@@ -8,9 +8,11 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
+  data!: string;
   constructor(public router: Router){}
 
   ngOnInit(): void {
-    this.router.navigate(['/compo1']);
+    this.data = 'trys';
+    this.router.navigate([`/compo1/${this.data}`]);
   }
 }
