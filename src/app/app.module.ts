@@ -3,9 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Compo1Component } from './components/compo1/compo1.component';
 import { GuardGuard } from './canG/guard.guard';
+import { ServiceService } from './serV/service.service';
+import { IntersInterceptor } from './interC/inters.interceptor';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { GuardGuard } from './canG/guard.guard';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [GuardGuard],
+  providers: [GuardGuard, ServiceService,
+              { provide: HTTP_INTERCEPTORS, useClass: IntersInterceptor, multi:true } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

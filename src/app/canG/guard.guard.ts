@@ -10,7 +10,7 @@ export class GuardGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean>{
     return new Observable((obs) => {
-      setTimeout(() => obs.next(true), 2000);
+      obs.next(true);
     });
   }
   
