@@ -41,16 +41,6 @@ app.get('/*', (req, res) =>
 
 var server = require('http').createServer(app); 
 
-const io = require('socket.io')(server, {
-        cors: {
-            origins: ['//angulartrys.herokuapp.com']
-        }
-});
 
-//io.on('connection' || 'connect' ,(soc) => {
-//    soc.emit('test', async () => {
-//        return await { data: 'heelo' };
- //   });
-//});
 
 server.listen((process.env.PORT || 8080), () => console.log('--Connection is successful--'));
