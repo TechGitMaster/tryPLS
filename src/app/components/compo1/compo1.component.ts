@@ -15,11 +15,7 @@ export class Compo1Component implements OnInit {
   constructor(public http: HttpClient, public serv: ServiceService){}
 
   ngOnInit(): void {
-  //  this.serv.listen().subscribe((data) => {
-    //  console.log(data);
-    //});
-
-    this.http.get('/trys').subscribe((data) => {
+    this.serv.listen().subscribe((data) => {
       console.log(data);
     });
 
