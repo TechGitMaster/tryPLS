@@ -41,12 +41,7 @@ app.get('/*', (req, res) =>
 
 var server = require('http').createServer(app); 
 
-const io = require('socket.io')(server, {
-	serveClient: true,
-        cors: {
-            origins: ['//localhost:4200']
-        }
-});
+const io = require('socket.io')(server);
 
 io.on('connection' || 'connect' ,(soc) => {
     soc.emit('test', 'hello');

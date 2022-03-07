@@ -11,7 +11,7 @@ export class ServiceService {
   socket!: any;
 
   constructor() { 
-    this.socket = io('ws://localhost:8080');
+    this.socket = io();
   }
 
   listen(): Observable<any>{
