@@ -8,26 +8,6 @@ import { io } from 'socket.io-client';
 export class ServiceService {
 
   
-  socket!: any;
-
-  constructor() { 
-    this.socket = io();
-  }
-
-  listen(): Observable<any>{
-    return new Observable((obs) => {
-
-      this.socket.on('test', (data: any) => {
-
-        obs.next(data);
-
-      });
-    });
-  }
-
-  emit(name: any, data: any){
-    this.socket.emit(name, data);
-  }
 
 
 }
