@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subscription, Observable } from 'rxjs';
 import { ServiceService } from 'src/app/serV/service.service';
 
@@ -9,10 +9,9 @@ import { ServiceService } from 'src/app/serV/service.service';
   styleUrls: ['./compo1.component.css']
 })
 export class Compo1Component implements OnInit {
-
-
   
   constructor(public http: HttpClient, public serv: ServiceService){}
+
 
   ngOnInit(): void {
 
