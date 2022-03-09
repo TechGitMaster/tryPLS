@@ -16,10 +16,12 @@ export class Compo1Component implements OnInit {
   socket!: any;
 
   ngOnInit(): void {
-    this.http.get('/env').subscribe((data) => {
-      this.socket = io(location.origin.replace(/^http/, 'ws')+`:${data}`);
+    this.http.get('/env').subscribe((datas: any) => {
 
-      console.log(location.origin.replace(/^http/, 'ws')+`:${data}`);
+      this.socket = io(location.origin.replace(/^http/, 'ws')+`:${datas.data}`);
+
+      console.log(location.origin.replace(/^http/, 'ws')+`:${datas.data}`);
+      
       this.func().subscribe((data) => {
         console.log(data);
       });
