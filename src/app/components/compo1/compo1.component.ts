@@ -18,7 +18,7 @@ export class Compo1Component implements OnInit {
   ngOnInit(): void {
     this.http.get('/env').subscribe((datas: any) => {
 
-      this.socket = io('https://angularsts.herokuapp.com'+`:${datas.data}/`, { transports: ["websocket"] });
+      this.socket = io('https://angularsts.herokuapp.com', { transports: ["websocket"] });
       
 
       console.log('ws://angularsts.herokuapp.com'+`:${datas.data}`);
