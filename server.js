@@ -46,10 +46,8 @@ const io = require('socket.io')(server, {
 	transports: ["websocket"]    
 });
 
-io.of('/client-web-app');
-
 io.on('connection' || 'connect' ,(soc) => {
-    soc.emit('test', 'heelo');
+    soc.emit('test', { data: 'HJASHDLKJSAHDLJKSAHDLJKSHDLKJ' });
 });
 
 server.listen(( process.env.PORT || 8080 ), () => console.log('Successful') );
