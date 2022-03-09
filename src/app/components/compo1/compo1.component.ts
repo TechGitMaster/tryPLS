@@ -12,9 +12,13 @@ export class Compo1Component implements OnInit {
   
   constructor(public http: HttpClient, public serv: ServiceService){}
 
+  socket!: any;
 
   ngOnInit(): void {
-
+    this.http.get('/env').subscribe((data) => {
+      console.log(data);
+    });
   }
+
 
 }

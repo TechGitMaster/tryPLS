@@ -39,8 +39,7 @@ app.get('/*', (req, res) =>
     res.sendFile('index.html', {root: 'dist/try-pls/'}),
 );
 
+
 var server = require('http').createServer(app); 
 
-
-
-server.listen((process.env.PORT || 8080), () => console.log('--Connection is successful--'));
+server.listen(( process.env.PORT || 8080 ), () => console.log('Successful') );
