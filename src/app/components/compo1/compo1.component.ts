@@ -19,6 +19,7 @@ export class Compo1Component implements OnInit {
     this.http.get('/env').subscribe((data) => {
       this.socket = io(location.origin.replace(/^http/, 'ws')+`:${data}`);
 
+      console.log(location.origin.replace(/^http/, 'ws')+`:${data}`);
       this.func().subscribe((data) => {
         console.log(data);
       });
