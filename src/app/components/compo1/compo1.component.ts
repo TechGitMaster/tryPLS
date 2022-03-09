@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subscription, Observable } from 'rxjs';
 import { ServiceService } from 'src/app/serV/service.service';
+import { io } from 'socket.io-client';
 
 @Component({
   selector: 'app-compo1',
@@ -16,9 +17,23 @@ export class Compo1Component implements OnInit {
 
   ngOnInit(): void {
     this.http.get('/env').subscribe((data) => {
-      console.log(data);
+      this.socket = io(location.origin.replace(/^http/, 'ws')+`:${data}`);
+
+      this.func().subscribe((data) => {
+        console.log(data);
+      });
+      
     });
+    
+
   }
 
+  func(): Observable<any>{
+    return new Observable((obs) => {
+      this.socket.on('test', (data: any) => {
+        obs.next(data);
+      });
+    });
+  }
 
 }
