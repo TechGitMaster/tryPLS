@@ -42,9 +42,7 @@ app.get('/*', (req, res) =>
 
 var server = require('http').createServer(app); 
 
-const io = require('socket.io')(server, {
-	transports: ["websocket"]    
-});
+const io = require('socket.io')(server, { transports: ["websocket"] });
 
 io.on('connection' || 'connect' ,(soc) => {
     soc.emit('test', { data: 'HJASHDLKJSAHDLJKSAHDLJKSHDLKJ' });
