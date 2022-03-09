@@ -43,10 +43,7 @@ app.get('/*', (req, res) =>
 var server = require('http').createServer(app); 
 
 const io = require('socket.io')(server, {
-	serveClient: true,
-        cors: {
-            origins: ['https://angularsts.herokuapp.com:4200']
-        }
+	transports: ["websocket"]    
 });
 
 io.on('connection' || 'connect' ,(soc) => {
