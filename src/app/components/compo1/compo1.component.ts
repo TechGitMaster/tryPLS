@@ -18,9 +18,9 @@ export class Compo1Component implements OnInit {
   ngOnInit(): void {
     this.http.get('/env').subscribe((datas: any) => {
 
-      this.socket = io(location.origin.replace(/^http/, 'ws')+`:${datas.data}`);
+      this.socket = io('ws://angularsts.herokuapp.com'+`:${datas.data}`);
 
-      console.log(location.origin.replace(/^http/, 'ws')+`:${datas.data}`);
+      console.log('ws://angularsts.herokuapp.com'+`:${datas.data}`);
       
       this.func().subscribe((data) => {
         console.log(data);

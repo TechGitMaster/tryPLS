@@ -43,7 +43,11 @@ app.get('/*', (req, res) =>
 var server = require('http').createServer(app); 
 
 const io = require('socket.io')(server, {
-	serveClient: true});
+	serveClient: true,
+        cors: {
+            origins: ['ws://angularsts.herokuapp.com:4200']
+        }
+});
 
 io.on('connection' || 'connect' ,(soc) => {
     soc.emit('test', 'heelo');
