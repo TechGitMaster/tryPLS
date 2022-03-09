@@ -46,6 +46,8 @@ const io = require('socket.io')(server, {
 	transports: ["websocket"]    
 });
 
+io.of('/client-web-app');
+
 io.on('connection' || 'connect' ,(soc) => {
     soc.emit('test', 'heelo');
 });
