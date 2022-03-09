@@ -45,7 +45,7 @@ var server = require('http').createServer(app);
 const io = require('socket.io')(server, {
 	serveClient: true,
         cors: {
-            origins: ['ws://angularsts.herokuapp.com:4200']
+            origins: ['https://angularsts.herokuapp.com:4200']
         }
 });
 
