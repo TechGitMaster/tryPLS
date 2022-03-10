@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Subscription, Observable } from 'rxjs';
 import { ServiceService } from 'src/app/serV/service.service';
 import { io } from 'socket.io-client';
+import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 
 @Component({
   selector: 'app-compo1',
@@ -17,17 +18,48 @@ export class Compo1Component implements OnInit {
 
   ngOnInit(): void {
     this.socket = io('https://angularsts.herokuapp.com', { transports: ["websocket"] });
-    this.func().subscribe((data) => {
-      console.log(data);
-    });
+
+    var interval = setInterval(() => {
+      if(localStorage.getItem('id')?.toString() != null){
+        this.objectBeingListen().subscribe((data) => console.log(data));
+        clearInterval(interval);
+      }else{
+        console.log('asd');
+      }
+    }, 1000);
   }
 
-  func(): Observable<any>{
+  objectBeingListen(): Observable<any>{
     return new Observable((obs) => {
-      this.socket.on('test', (data: any) => {
+      this.socket.on(localStorage.getItem('id')?.toString(), (data: any) => {
         obs.next(data);
       });
     });
   }
 
+  sendData(): void{
+    var docL = document.querySelector('.input2');
+    var conL = <HTMLInputElement>docL;
+
+    var docM = document.querySelector('.input3');
+    var conM = <HTMLInputElement>docM;
+
+    var objects = {
+      listen: conL.value.toString(),
+      message: conM.value.toString()
+    };
+
+    this.socket.emit('send', objects);
+  }
+
+  changeSession(): void{
+    var doc = document.querySelector('.input1');
+    var con = <HTMLInputElement>doc;
+
+    var httpParams = new HttpParams();
+    httpParams.set('data', con.value.toString());
+    this.http.get('/sessionId', { params: httpParams });
+
+    localStorage.setItem('id', con.value);
+  }
 }
